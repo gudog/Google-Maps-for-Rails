@@ -71,7 +71,7 @@ class @Gmaps.Google.Builders.Marker extends Gmaps.Objects.BaseBuilder
     @_create_or_retrieve_image @_picture_args(picture_name)
 
   _create_or_retrieve_image: (picture_args) ->
-    if @constructor.CACHE_STORE[picture_args.url] is undefined
+    if (@constructor.CACHE_STORE[picture_args.url] is undefined) || !(@constructor.CACHE_STORE[picture_args.origin] is picture_args.origin)
       @constructor.CACHE_STORE[picture_args.url] = new(@primitives().markerImage)(picture_args.url, picture_args.size, picture_args.origin, picture_args.anchor , picture_args.scaledSize)
 
     @constructor.CACHE_STORE[picture_args.url]
